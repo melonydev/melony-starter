@@ -3,7 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { AppProvider } from "melony";
 import { loginAction, logoutAction, meAction } from "@/app/actions/auth";
+
 import * as projectViews from "@/app/views/projects";
+import * as taskViews from "@/app/views/tasks";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,7 +39,8 @@ export default function RootLayout({
             title: "Melony Starter",
             auth: { meAction, logoutAction, loginAction },
             views: {
-              ...projectViews,
+              // ...projectViews,
+              ...taskViews,
             },
           }}
         >

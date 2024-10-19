@@ -22,6 +22,19 @@ export const listProjectsAction: ListViewAction = async ({
           color: "pink",
         },
       },
+      {
+        id: "12345",
+        title: "Project #2",
+        amount: 300,
+        owner: {
+          title: "User #2",
+          image: "https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_8.png",
+        },
+        status: {
+          title: "Completed",
+          color: "green",
+        },
+      },
     ],
     meta: {
       total: 1,

@@ -2,11 +2,7 @@
 
 import { DetailViewAction, FormViewAction, ListViewAction } from "melony";
 
-export const listProjectsAction: ListViewAction = async ({
-  filter,
-  paginate,
-  sort,
-}) => {
+export const listProjectsAction: ListViewAction = async () => {
   return {
     items: [
       {
@@ -42,7 +38,7 @@ export const listProjectsAction: ListViewAction = async ({
   };
 };
 
-export const getProjectAction: DetailViewAction = async ({ id }) => {
+export const getProjectAction: DetailViewAction = async () => {
   return {
     id: "1234",
     title: "Project Title",

@@ -2,11 +2,7 @@
 
 import { ListViewAction } from "melony";
 
-export const listTasksAction: ListViewAction = async ({
-  filter,
-  paginate,
-  sort,
-}) => {
+export const listTasksAction: ListViewAction = async () => {
   return {
     items: [
       {

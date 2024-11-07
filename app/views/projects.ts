@@ -1,4 +1,4 @@
-import { defineView, Field } from "melony";
+import { detailView, Field, formView, listView } from "melony";
 import {
   createProjectAction,
   getProjectAction,
@@ -40,64 +40,52 @@ const fields: Record<string, Field> = {
   },
 };
 
-export const projectsListView = defineView(
-  "list",
-  {
-    title: "Projects",
-    fields: fields,
-    headerButtons: [{ label: "Create Project", viewId: "projectCreateView" }],
-    itemButtons: [{ label: "Edit", viewId: "projectEditView" }],
-    onItemClick: { viewId: "projectDetailedView" },
-    showInNavigation: true,
-  },
-  listProjectsAction
-);
+export const projectsListView = listView({
+  action: listProjectsAction,
+  title: "Projects",
+  fields: fields,
+  headerButtons: [{ label: "Create Project", viewId: "projectCreateView" }],
+  itemButtons: [{ label: "Edit", viewId: "projectEditView" }],
+  onItemClick: { viewId: "projectDetailView" },
+  showInNavigation: true,
+});
 
-export const projectCreateView = defineView(
-  "form",
-  {
-    title: "Create Project",
-    fields: fields,
-  },
-  createProjectAction
-);
+export const projectCreateView = formView({
+  action: createProjectAction,
+  title: "Create Project",
+  fields: fields,
+});
 
-export const projectEditView = defineView(
-  "form",
-  {
-    title: "Edit Project",
-    fields: fields,
-    isDocRequired: true,
-    getDefaultValues: getProjectAction,
-  },
-  updateProjectAction
-);
+export const projectEditView = formView({
+  action: updateProjectAction,
+  title: "Edit Project",
+  fields: fields,
+  isDocRequired: true,
+  getDefaultValues: getProjectAction,
+});
 
-export const projectDetailedView = defineView(
-  "detail",
-  {
-    title: "Project Details",
-    fields: fields,
-    headerButtons: [{ label: "Edit", viewId: "projectEditView" }],
-    tabs: [
-      {
-        label: "Tasks",
-        viewId: "tasksListView",
-        setContext: async ({ searchParams }) => {
-          "use server";
+export const projectDetailView = detailView({
+  action: getProjectAction,
+  title: "Project Details",
+  fields: fields,
+  headerButtons: [{ label: "Edit", viewId: "projectEditView" }],
+  tabs: [
+    {
+      label: "Tasks",
+      viewId: "tasksListView",
+      setContext: async ({ searchParams }) => {
+        "use server";
 
-          return {
-            initialFilter: [
-              {
-                field: "projectId",
-                operator: "Is",
-                value: searchParams?.id,
-              },
-            ],
-          };
-        },
+        return {
+          initialFilter: [
+            {
+              field: "projectId",
+              operator: "Is",
+              value: searchParams?.id,
+            },
+          ],
+        };
       },
-    ],
-  },
-  getProjectAction
-);
+    },
+  ],
+});

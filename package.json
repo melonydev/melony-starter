@@ -9,12 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@melony/ui": "^0.1.20",
+    "@melony/ui": "^0.1.23",
     "@radix-ui/react-icons": "^1.3.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.447.0",
-    "melony": "^0.0.21",
+    "melony": "^0.0.22",
     "next": "14.2.14",
     "react": "^18",
     "react-dom": "^18",

@@ -39,7 +39,7 @@ export default function RootLayout({
             title: "Melony Starter",
             auth: { meAction, logoutAction, loginAction },
             views: {
-              // ...projectViews,
+              ...projectViews,
               ...taskViews,
             },
           }}
